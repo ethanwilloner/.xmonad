@@ -1,0 +1,36 @@
+import XMonad
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
+import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Hooks.EwmhDesktops
+import XMonad.Config.Desktop
+import System.IO
+
+myManageHook = composeAll
+    [ className =? "Gimp"      --> doFloat
+    , className =? "pidgin"    --> doFloat
+    , className =? "skype"     --> doFloat
+    , className =? "vlc"       --> doFloat
+    , className =? "tilda"     --> doFloat
+    , className =? "Vncviewer" --> doFloat
+    ]
+
+main = do
+    xmproc <- spawnPipe "/usr/bin/tint2 /home/ethan/.config/tint2/tint2rc"
+    xmproc <- spawnPipe "/usr/bin/nm-applet"
+    xmproc <- spawnPipe "/usr/bin/parcellite"
+    xmproc <- spawnPipe "/usr/bin/nitrogen --restore"
+    xmproc <- spawnPipe "/usr/bin/volti"
+    xmproc <- spawnPipe "/usr/bin/mate-power-manager"
+    xmproc <- spawnPipe "/usr/bin/cpufreq-set -g ondemand"
+    xmproc <- spawnPipe "xset b off"
+    xmonad $ ewmh desktopConfig
+        { manageHook = manageDocks <+> myManageHook -- make sure to include myManageHook definition from above
+                        <+> manageHook desktopConfig
+        , layoutHook = avoidStruts  $  layoutHook defaultConfig
+        , modMask = mod4Mask
+	, terminal = "mate-terminal"
+	, borderWidth = 1
+        , focusedBorderColor = "#7FBC71"
+        }
