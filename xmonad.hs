@@ -34,9 +34,9 @@ main = do
     xmonad $ mateConfig
                 { modMask = mod4Mask
 		 --, keys = myKeys
-                 , borderWidth = 1
-		 , normalBorderColor = "#ffffff"
-                 , focusedBorderColor = "#20b2aa"   --"#7FBC71"
+                 , borderWidth = 2
+		 , normalBorderColor = "#8b9397"--"#ffffff"
+                 , focusedBorderColor = "#0D5E9F"--"#20b2aa"   --"#7FBC71"
                 } --`additionalKeysP` myKeys
 
 --myKeys conf@(XConfig {XMonad.modMask = modm}) = 
