@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>Ergonomic keybindings for the xmonad window manager on the Colemak keyboard layout</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2009-01-01 17:27:32 WET"/>
+<meta name="author" content=""/>
+<style type="text/css">
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color:lightblue; font-weight:normal }
+  .target { }
+  .timestamp { color: grey }
+  .timestamp-kwd { color: CadetBlue }
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top; }
+  dt { font-weight: bold; }
+</style>
+</head><body>
+<h1 class="title">Ergonomic keybindings for the xmonad window manager on the Colemak keyboard layout</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 Introduction</a></li>
+<li><a href="#sec-2">2 Layout diagram</a>
+<ul>
+<li><a href="#sec-2.1">2.1 Download</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3 Changed keys</a></li>
+<li><a href="#sec-4">4 Detailed list of key bindings</a></li>
+<li><a href="#sec-5">5 The code for the xmonad.hs rc file</a>
+<ul>
+<li><a href="#sec-5.1">5.1 Download a complete xmonad.hs</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">1 Introduction</h2>
+<div id="text-1">
+
+<p>The main concern of these key bindings is ergonomics, followed by ease of memorization.
+</p>
+<p>
+Set your modMask to the lower left modifier that you prefer. I use the window key, but any one will do, as long as you can reach the 'qaz' column easily. Most of the command keys will be on the right side of the keyboard, so that you can reach the modifier by moving your left forearm, maintaining a neutral wrist position to minimize the strain, while the right hand rests on the home row.
+</p></div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">2 Layout diagram</h2>
+<div id="text-2">
+
+<p><img src="xmonad-colemak.png"/>
+</p>
+</div>
+
+<div id="outline-container-2.1" class="outline-3">
+<h3 id="sec-2.1">2.1 Download</h3>
+<div id="text-2.1">
+
+<ul>
+<li>
+<a href="xmonad-colemak.pdf">PDF</a> (164K)
+</li>
+<li>
+<a href="xmonad-colemak.svgz">SVGZ</a> (28K)
+
+</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">3 Changed keys</h2>
+<div id="text-3">
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<col align="left"></col><col align="left"></col>
+<thead>
+<tr><th>Original key</th><th>Changed to</th></tr>
+</thead>
+<tbody>
+<tr><td>p</td><td>l</td></tr>
+<tr><td>c</td><td>k</td></tr>
+<tr><td>n</td><td>/</td></tr>
+<tr><td>j</td><td>n</td></tr>
+<tr><td>k</td><td>e</td></tr>
+<tr><td>h</td><td>Shift-z</td></tr>
+<tr><td>l</td><td>z</td></tr>
+<tr><td>t</td><td>'</td></tr>
+<tr><td>,</td><td>a</td></tr>
+<tr><td>.</td><td>Shift-a</td></tr>
+<tr><td>b</td><td>,</td></tr>
+<tr><td>w</td><td>u</td></tr>
+<tr><td>e</td><td>y</td></tr>
+<tr><td>r</td><td>;</td></tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">4 Detailed list of key bindings</h2>
+<div id="text-4">
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<col align="left"></col><col align="left"></col><col align="left"></col>
+<thead>
+<tr><th>Default</th><th>Changed to</th><th>Action</th></tr>
+</thead>
+<tbody>
+<tr><td>mod-shift-return</td><td></td><td>Launch terminal</td></tr>
+<tr><td>mod-p</td><td>mod-l</td><td>Launch dmenu</td></tr>
+<tr><td>mod-shift-p</td><td>mod-shift-l</td><td>Launch gmrun</td></tr>
+<tr><td>mod-shift-c</td><td>mod-shift-k</td><td>close the focused window</td></tr>
+<tr><td>mod-space</td><td></td><td>Rotate   through   the  available   layout algorithms</td></tr>
+<tr><td>mod-shift-space</td><td></td><td>Reset  the  layouts  on  the  current workspace to default</td></tr>
+<tr><td>mod-n</td><td>mod-/</td><td>Resize viewed windows to the correct size</td></tr>
+<tr><td>mod-tab</td><td></td><td>Move focus to the next window</td></tr>
+<tr><td>mod-shift-tab</td><td></td><td>Move focus to the previous window</td></tr>
+<tr><td>mod-j</td><td>mod-n</td><td>Move focus to the next window</td></tr>
+<tr><td>mod-k</td><td>mod-e</td><td>Move focus to the previous window</td></tr>
+<tr><td>mod-m</td><td></td><td>Move focus to the master window</td></tr>
+<tr><td>mod-return</td><td></td><td>Swap  the focused  window  and the  master window</td></tr>
+<tr><td>mod-shift-j</td><td>mod-shift-n</td><td>Swap  the focused  window  with the  next window</td></tr>
+<tr><td>mod-shift-k</td><td>mod-shift-e</td><td>Swap the  focused window with the previous window</td></tr>
+<tr><td>mod-h</td><td>mod-shift-z</td><td>Shrink the master area</td></tr>
+<tr><td>mod-l</td><td>mod-z</td><td>Expand the master area</td></tr>
+<tr><td>mod-t</td><td>mod-'</td><td>Push window back into tiling</td></tr>
+<tr><td>mod-comma</td><td>mod-a</td><td>Increment  the  number  of windows  in  the  master area</td></tr>
+<tr><td>mod-period</td><td>mod-shift-a</td><td>Deincrement the number  of windows  in the master area</td></tr>
+<tr><td>mod-b</td><td>mod-,</td><td>Toggle the status bar gap</td></tr>
+<tr><td>mod-shift-q</td><td></td><td>Quit xmonad</td></tr>
+<tr><td>mod-q</td><td></td><td>Restart xmonad</td></tr>
+<tr><td>mod-[1..9]</td><td></td><td>Switch to workspace N</td></tr>
+<tr><td>mod-shift-[1..9]</td><td></td><td>Move client to workspace N</td></tr>
+<tr><td>mod-{w,e,r}</td><td>mod-{u,y,;}</td><td>Switch to  physical/Xinerama screens 1, 2, or 3</td></tr>
+<tr><td>mod-shift-{w,e,r}</td><td>mod-shift-{u,y,;}</td><td>Move client to screen 1, 2, or 3</td></tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">5 The code for the xmonad.hs rc file</h2>
+<div id="text-5">
+
+
+<pre>myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
+
+    -- launch a terminal
+    [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
+
+    -- launch dmenu
+    , ((modMask,               xK_l     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
+
+    -- launch gmrun
+    , ((modMask .|. shiftMask, xK_l     ), spawn "gmrun")
+
+    -- close focused window 
+    , ((modMask .|. shiftMask, xK_k     ), kill)
+
+     -- Rotate through the available layout algorithms
+    , ((modMask,               xK_space ), sendMessage NextLayout)
+
+    --  Reset the layouts on the current workspace to default
+    , ((modMask .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
+
+    -- Resize viewed windows to the correct size
+    , ((modMask,               xK_slash ), refresh)
+
+    -- Move focus to the next window
+    , ((modMask,               xK_Tab   ), windows W.focusDown)
+
+    -- Move focus to the next window
+    , ((modMask,               xK_n     ), windows W.focusDown)
+
+    -- Move focus to the previous window
+    , ((modMask,               xK_e     ), windows W.focusUp  )
+
+    -- Move focus to the master window
+    , ((modMask,               xK_m     ), windows W.focusMaster  )
+
+    -- Swap the focused window and the master window
+    , ((modMask,               xK_Return), windows W.swapMaster)
+
+    -- Swap the focused window with the next window
+    , ((modMask .|. shiftMask, xK_n     ), windows W.swapDown  )
+
+    -- Swap the focused window with the previous window
+    , ((modMask .|. shiftMask, xK_e     ), windows W.swapUp    )
+
+    -- Shrink the master area
+    , ((modMask .|. shiftMask, xK_z     ), sendMessage Shrink)
+
+    -- Expand the master area
+    , ((modMask,               xK_z     ), sendMessage Expand)
+
+    -- Push window back into tiling
+    , ((modMask,               xK_period), withFocused $ windows . W.sink)
+
+    -- Increment the number of windows in the master area
+    , ((modMask              , xK_a     ), sendMessage (IncMasterN 1))
+
+    -- Deincrement the number of windows in the master area
+    , ((modMask .|. shiftMask, xK_a     ), sendMessage (IncMasterN (-1)))
+
+
+    -- toggle the status bar gap
+    -- TODO, update this binding with avoidStruts
+    ----, ((modMask              , xK_apostrophe )),
+
+    -- Quit xmonad
+    , ((modMask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
+
+    -- Restart xmonad
+    , ((modMask              , xK_q     ), restart "xmonad" True)
+    ]
+    ++
+</pre>
+
+</div>
+
+<div id="outline-container-5.1" class="outline-3">
+<h3 id="sec-5.1">5.1 Download a complete xmonad.hs</h3>
+<div id="text-5.1">
+
+<p><a href="./xmonad.hs">xmonad.hs</a> (12K) <br/>
+(?) for xmonad &gt;= 0.5
+
+<hr/>
+</p></div>
+</div>
+</div>
+<div id="postamble"><p class="author"> Author: 
+<a href="mailto:ruitra@gmail.com">&lt;ruitra@gmail.com&gt;</a>
+</p>
+<p class="date"> Date: 2009-01-01 17:27:32 WET</p>
+<p>HTML generated by org-mode 6.06b in emacs 23<p>
+</div></body>
+</html>
