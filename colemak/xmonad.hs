@@ -32,24 +32,23 @@ mateRun = withDisplay $ \dpy -> do
 
 
 main = do
-    xmonad $ mateConfig
-                { modMask = mod4Mask
-		 --, keys = myKeys
-                 , borderWidth = 2
-		 , normalBorderColor = "#8b9397"--"#ffffff"
-                 , focusedBorderColor = "#0D5E9F"--"#20b2aa"   --"#7FBC71"
-                } --`additionalKeysP` myKeys
+    xmonad $ mateConfig{ 
+		modMask 				= mod4Mask
+    	, borderWidth 			= 2
+		, normalBorderColor 	= "#8b9397"--"#ffffff"
+        , focusedBorderColor 	= "#0D5E9F"--"#20b2aa"   --"#7FBC71"
+		, keys               	= myKeys
+                }
 
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     -- launch a terminal
     [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-
     -- close focused window 
-    , ((modMask .|. shiftMask, xK_k     ), kill)
+    , ((modMask .|. shiftMask, xK_c     ), kill)
 
      -- Rotate through the available layout algorithms
-    --, ((modMask,               xK_space ), sendMessage NextLayout)
+    , ((modMask,               xK_space ), sendMessage NextLayout)
 
     --  Reset the layouts on the current workspace to default
     , ((modMask .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
@@ -79,43 +78,41 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. shiftMask, xK_e     ), windows W.swapUp    )
 
     -- Shrink the master area
-    , ((modMask .|. shiftMask, xK_z     ), sendMessage Shrink)
+    , ((modMask 			 , xK_h     ), sendMessage Shrink)
 
     -- Expand the master area
-    , ((modMask,               xK_z     ), sendMessage Expand)
+    , ((modMask				 , xK_i     ), sendMessage Expand)
 
     -- Push window back into tiling
-    , ((modMask,               xK_period), withFocused $ windows . W.sink)
+    , ((modMask,               xK_t		), withFocused $ windows . W.sink)
 
     -- Increment the number of windows in the master area
-    --, ((modMask              , xK_a     ), sendMessage (IncMasterN 1))
+    , ((modMask              , xK_comma     ), sendMessage (IncMasterN 1))
 
     -- Deincrement the number of windows in the master area
-    --, ((modMask .|. shiftMask, xK_a     ), sendMessage (IncMasterN (-1)))
+    , ((modMask 			 , xK_period    ), sendMessage (IncMasterN (-1)))
 
     -- Quit xmonad
-    , ((modMask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
+    --, ((modMask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
 
     -- Restart xmonad
     , ((modMask              , xK_q     ), restart "xmonad" True)
     ]
-    I\\\|
-
+	++
     --
     -- mod-[1..9], Switch to workspace N
     -- mod-shift-[1..9], Move client to workspace N
     --
-    --[((m .|. modMask, k), windows $ f i)
-    --    | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-    --    , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
-    -- 
-
+    [((m .|. modMask, k), windows $ f i)
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+	++
     --
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     --
-    --[((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-    --    | (key, sc) <- zip [xK_u, xK_y, xK_semicolon] [0..]
-    --    , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+    [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
+        | (key, sc) <- zip [xK_u, xK_y, xK_semicolon] [0..]
+        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 
