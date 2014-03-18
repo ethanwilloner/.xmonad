@@ -12,6 +12,8 @@ import System.IO
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Layout.Grid
+import qualified XMonad.Actions.FlexibleResize as Flex
+
 
 mateConfig = desktopConfig
     { terminal = "mate-terminal"
@@ -38,7 +40,22 @@ main = do
 		, normalBorderColor 	= "#8b9397"--"#ffffff"
         , focusedBorderColor 	= "#0D5E9F"--"#20b2aa"   --"#7FBC71"
 		, keys               	= myKeys
-                }
+        , mouseBindings         = myMouse
+        }
+
+-- | Mouse bindings: default actions bound to mouse events
+myMouse :: XConfig Layout -> M.Map (KeyMask, Button) (Window -> X ())
+myMouse (XConfig {XMonad.modMask = modMask}) = M.fromList
+    -- mod-button1 %! Set the window to floating mode and move by dragging
+    [ ((modMask, button1), \w -> focus w >> mouseMoveWindow w
+                                          >> windows W.shiftMaster)
+    -- mod-button2 %! Raise the window to the top of the stack
+    , ((modMask, button2), windows . (W.shiftMaster .) . W.focusWindow)
+    -- mod-button3 %! Set the window to floating mode and resize by dragging
+    , ((modMask, button3), \w -> focus w >> mouseResizeWindow w
+                                         >> windows W.shiftMaster)
+    -- you may also bind events to the mouse scroll wheel (button4 and button5)
+    ]
 
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
@@ -85,7 +102,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     -- Push window back into tiling
     , ((modMask,               xK_t		), withFocused $ windows . W.sink)
-
+    
     -- Increment the number of windows in the master area
     , ((modMask              , xK_comma     ), sendMessage (IncMasterN 1))
 
