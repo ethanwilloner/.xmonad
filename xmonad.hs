@@ -13,38 +13,34 @@ import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Layout.Grid
 import qualified XMonad.Actions.FlexibleResize as Flex
-import XMonad.Config.Xfce
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.EwmhDesktops
 
 
-xfce4Config = desktopConfig
-    { terminal = "xfce4-terminal"
+mateConfig = desktopConfig
+    { terminal = "mate-terminal"
     }
 
---mateRun :: X ()
---mateRun = withDisplay $ \dpy -> do
---    rw <- asks theRoot
---    mate_panel <- getAtom "_MATE_PANEL_ACTION"
---    panel_run <- getAtom "_MATE_PANEL_ACTION_RUN_DIALOG"
+mateRun :: X ()
+mateRun = withDisplay $ \dpy -> do
+    rw <- asks theRoot
+    mate_panel <- getAtom "_MATE_PANEL_ACTION"
+    panel_run <- getAtom "_MATE_PANEL_ACTION_RUN_DIALOG"
 
---    io $ allocaXEvent $ \e -> do
---        setEventType e clientMessage
---        setClientMessageEvent e rw mate_panel 32 panel_run 0
---        sendEvent dpy rw False structureNotifyMask e
---        sync dpy False
+    io $ allocaXEvent $ \e -> do
+        setEventType e clientMessage
+        setClientMessageEvent e rw mate_panel 32 panel_run 0
+        sendEvent dpy rw False structureNotifyMask e
+        sync dpy False
+
+
 
 main = do
-    xmonad $ xfce4Config{ 
+    xmonad $ mateConfig{ 
 		modMask 				= mod4Mask
     	, borderWidth 			= 2
 		, normalBorderColor 	= "#8b9397"--"#ffffff"
         , focusedBorderColor 	= "#0D5E9F"--"#20b2aa"   --"#7FBC71"
 		, keys               	= myKeys
         , mouseBindings         = myMouse
-        , layoutHook = avoidStruts $ layoutHook defaultConfig
-        , handleEventHook = ewmhDesktopsEventHook
-        , manageHook = manageDocks <+> manageHook defaultConfig
         }
 
 -- | Mouse bindings: default actions bound to mouse events
