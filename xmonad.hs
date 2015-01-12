@@ -16,7 +16,7 @@ import qualified XMonad.Actions.FlexibleResize as Flex
 import XMonad.Hooks.SetWMName
 
 mateConfig = desktopConfig
-    { terminal = "mate-terminal"
+    { terminal = "mate-terminal -e fish"
     }
 
 mateRun :: X ()
