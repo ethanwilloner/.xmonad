@@ -13,7 +13,7 @@ import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Layout.Grid
 import qualified XMonad.Actions.FlexibleResize as Flex
-
+import XMonad.Hooks.SetWMName
 
 mateConfig = desktopConfig
     { terminal = "mate-terminal"
@@ -35,7 +35,8 @@ mateRun = withDisplay $ \dpy -> do
 
 main = do
     xmonad $ mateConfig{ 
-		modMask 				= mod4Mask
+		startupHook = setWMName "LG3D"
+		, modMask 				= mod4Mask
     	, borderWidth 			= 2
 		, normalBorderColor 	= "#8b9397"--"#ffffff"
         , focusedBorderColor 	= "#0D5E9F"--"#20b2aa"   --"#7FBC71"
