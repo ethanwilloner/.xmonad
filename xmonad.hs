@@ -31,18 +31,19 @@ mateRun = withDisplay $ \dpy -> do
         sendEvent dpy rw False structureNotifyMask e
         sync dpy False
 
-
-
 main = do
     xmonad $ mateConfig{ 
-		startupHook = setWMName "LG3D"
-		, modMask 				= mod4Mask
+		 modMask 				= mod4Mask
     	, borderWidth 			= 2
 		, normalBorderColor 	= "#8b9397"--"#ffffff"
         , focusedBorderColor 	= "#0D5E9F"--"#20b2aa"   --"#7FBC71"
 		, keys               	= myKeys
         , mouseBindings         = myMouse
-        }
+    	, startupHook = do
+			setWMName "LG3D"
+			spawn "xsetroot -cursor_name left_ptr"
+        
+}
 
 -- | Mouse bindings: default actions bound to mouse events
 myMouse :: XConfig Layout -> M.Map (KeyMask, Button) (Window -> X ())
