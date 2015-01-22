@@ -39,9 +39,9 @@ main = do
         , focusedBorderColor 	= "#0D5E9F"--"#20b2aa"   --"#7FBC71"
 		, keys               	= myKeys
         , mouseBindings         = myMouse
-    	, startupHook = do
-			setWMName "LG3D"
-			spawn "xsetroot -cursor_name left_ptr"
+--    	, startupHook = do
+--			setWMName "LG3D"
+--			spawn "xsetroot -cursor_name left_ptr"
         
 }
 
